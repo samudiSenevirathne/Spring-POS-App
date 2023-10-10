@@ -44,7 +44,7 @@
                 </div>
                 <div class="form-group">
                     <label for="itemQty">Item Qty</label>
-                    <input name="qty" class="form-control" id="itemQty" type="text">
+                    <input name="qtyOnHand" class="form-control" id="itemQty" type="text">
                     <span class="control-error" id="lblqty"></span>
                 </div>
                 <div class="form-group">
@@ -93,14 +93,14 @@
             //get the selected rows data
             let code = $(this).children().eq(0).text();
             let description = $(this).children().eq(1).text();
-            let qty = $(this).children().eq(2).text();
-            let price = $(this).children().eq(3).text();
+            let qtyOnHand = $(this).children().eq(2).text();
+            let unitPrice = $(this).children().eq(3).text();
 
             //set the selected rows data to the input fields
             $("#itemCode").val(code);
             $("#itemName").val(description);
-            $("#itemQty").val(qty);
-            $("#itemPrice").val(price);
+            $("#itemQty").val(qtyOnHand);
+            $("#itemPrice").val(unitPrice);
         });
     }
 
@@ -122,7 +122,7 @@
             success:function (resp){
                 console.log(resp.message);
                 for(let item of resp.data){
-                    let row =`<tr><td>${item.code}</td><td>${item.description}</td><td>${item.qty}</td><td>${item.unitPrice}</td></tr>`;
+                    let row =`<tr><td>${item.code}</td><td>${item.description}</td><td>${item.qtyOnHand}</td><td>${item.unitPrice}</td></tr>`;
                     $("#tblItem").append(row);
                 }
                 bindTrEvents();
@@ -161,16 +161,16 @@
     $('#btnItemUpdate').click(function () {
         let code=$("#itemCode").val();
         let description= $("#itemName").val();
-        let qty= $("#itemQty").val();
+        let qtyOnHand= $("#itemQty").val();
         let unitPrice= $("#itemPrice").val();
-        let value=$("#itemQty").val();
+        // let value=$("#itemQty").val();
 
         itemAll={
             "code":code,
             "description":description,
-            "qty":qty,
-            "unitPrice":unitPrice,
-            "value":value
+            "qtyOnHand":qtyOnHand,
+            "unitPrice":unitPrice
+            // "value":value
         }
 
         $.ajax({

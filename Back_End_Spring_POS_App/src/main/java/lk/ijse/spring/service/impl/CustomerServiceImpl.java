@@ -22,6 +22,9 @@ public class CustomerServiceImpl implements CustomerService {
     @Autowired
     ModelMapper mapper;
 
+    public CustomerServiceImpl() {
+        System.out.println("CustomerServiceImpl Instantiated");
+    }
 
     @Override
     public void addCustomer(CustomerDTO dto) {
@@ -29,7 +32,6 @@ public class CustomerServiceImpl implements CustomerService {
         if (customerRepo.existsById(dto.getId())) {
             throw new RuntimeException(dto.getId()+" is already available, please insert a new ID");
         }
-
         Customer map = mapper.map(dto, Customer.class);
         //first param = source
         //Type you want to convert
