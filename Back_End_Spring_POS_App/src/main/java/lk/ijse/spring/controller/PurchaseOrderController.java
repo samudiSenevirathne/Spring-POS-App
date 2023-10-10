@@ -34,8 +34,10 @@ public class PurchaseOrderController {
     public ResponseUtil purchaseOrder(@RequestBody OrdersDTO od, OrderDetailsDTO ods, ItemDTO i) {
         ordersService.addOrders(od);
         orderDetailsService.addOrderDetails(ods);
-        itemService.editItemQty(i);
+        itemService.editItemQty(i.getQtyOnHand(),i.getCode());
         return new ResponseUtil("Ok", "Successfully Purchased",ods);
     }
+
+
 
 }

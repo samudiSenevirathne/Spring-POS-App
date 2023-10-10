@@ -465,12 +465,17 @@
         let oid=$("#txtOrderID").val();
         let date= $("#txtDate").val();
         let cusId= $("#orderCustomerID").val();
-        ordersAll={
-            "oid":oid,
-            "date":date,
-            "cusId":cusId,
-            "orderDetailArray":orderDetailArray,
-            "itemArray":itemArray
+        // ordersAll={
+        //     "oid":oid,
+        //     "date":date,
+        //     "cusId":cusId,
+        //     "orderDetailArray":orderDetailArray,
+        //     "itemArray":itemArray
+        // }
+        ordersAll= {
+                "oid":oid,
+                "date":date,
+                "cusId":cusId,
         }
 
         $.ajax({
@@ -480,7 +485,8 @@
             //     Auth:"user=samuDi,pass=samu@123"
             // },
             contentType:"application/json",
-            data:JSON.stringify(ordersAll),
+            data:JSON.stringify(ordersAll,orderDetailArray,itemArray),
+            // data:JSON.stringify(ordersAll),
             success: function (resp) {
                 alert(resp.message);
                 setOrderID();

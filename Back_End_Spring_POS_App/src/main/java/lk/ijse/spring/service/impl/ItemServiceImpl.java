@@ -70,11 +70,12 @@ public class ItemServiceImpl implements ItemService {
     }
 
     @Override
-    public void editItemQty(ItemDTO dto) {
-        if (!itemRepo.existsById(dto.getCode())) {
-            throw new RuntimeException(dto.getCode()+ " item is not available, please check the ID before update.!");
+    public void editItemQty(int qtyOnHand ,String code) {
+        if (!itemRepo.existsById(code)) {
+            throw new RuntimeException(code+ " item is not available, please check the ID before update.!");
         }
-        Item map = mapper.map(dto, Item.class);
+        Item item = itemRepo.findById(code).get();
+        Item map = mapper.map(item, Item.class);
         itemRepo.editItemQty(map.getQtyOnHand(),map.getCode());
     }
 }
