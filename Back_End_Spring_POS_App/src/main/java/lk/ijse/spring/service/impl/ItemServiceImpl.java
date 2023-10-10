@@ -68,4 +68,13 @@ public class ItemServiceImpl implements ItemService {
         Item map = mapper.map(dto, Item.class);
         itemRepo.save(map);
     }
+
+    @Override
+    public void editItemQty(ItemDTO dto) {
+        if (!itemRepo.existsById(dto.getCode())) {
+            throw new RuntimeException(dto.getCode()+ " item is not available, please check the ID before update.!");
+        }
+        Item map = mapper.map(dto, Item.class);
+        itemRepo.editItemQty(map.getQtyOnHand(),map.getCode());
+    }
 }

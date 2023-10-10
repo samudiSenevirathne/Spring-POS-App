@@ -284,7 +284,7 @@
     function setOrderID(){
         var o_id="";
         $.ajax({
-            url: "http://localhost:8080/Back_End_Spring_POS_App_war/orders",
+            url: "http://localhost:8080/Back_End_Spring_POS_App_war/PurchaseOrder",
             // headers:{
             //     Auth:"user=samuDi,pass=samu@123"
             // },
@@ -329,7 +329,7 @@
                     if ($('#cmbItems').val() == item.description) {
                         $('#txtItemCode').val(item.code);
                         $('#txtItemDescription').val(item.description);
-                        $('#txtQTYOnHand').val(item.qty);
+                        $('#txtQTYOnHand').val(item.qtyOnHand);
                         $('#txtItemPrice').val(item.unitPrice);
                     }
                 }
@@ -474,7 +474,7 @@
         }
 
         $.ajax({
-            url:"http://localhost:8080/Back_End_Spring_POS_App_war/orders",
+            url:"http://localhost:8080/Back_End_Spring_POS_App_war/PurchaseOrder",
             method: "post",
             // headers:{
             //     Auth:"user=samuDi,pass=samu@123"

@@ -16,4 +16,6 @@ public interface ItemService {
 
     void updateItem(ItemDTO dto);
 
+    void editItemQty(ItemDTO dto);
+
 }
