@@ -24,17 +24,6 @@ public class OrdersServiceImpl implements OrdersService {
 
 
     @Override
-    public void addOrders(OrdersDTO dto) {
-        /* as service level validation */
-        if (ordersRepo.existsById(dto.getOid())) {
-            throw new RuntimeException(dto.getOid()+" is already available, please insert a new ID");
-        }
-
-        Orders map = mapper.map(dto, Orders.class);
-        ordersRepo.save(map);
-    }
-
-    @Override
     public List<OrdersDTO> getAllOrders() {
         List<Orders> all = ordersRepo.findAll();
         return mapper.map(all, new TypeToken<List<OrdersDTO>>() {}.getType());

@@ -25,4 +25,10 @@ public class Orders {
     //Inverse
     @OneToMany(mappedBy = "orders",cascade = CascadeType.ALL)
     private List<OrderDetails> orderDetails;
+
+    public Orders(String oid, Customer cusID, LocalDate date) {
+        this.oid = oid;
+        this.cusID = cusID;
+        this.date = date;
+    }
 }

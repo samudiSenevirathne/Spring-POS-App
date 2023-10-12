@@ -6,7 +6,6 @@ import java.util.List;
 
 public interface OrdersService {
 
-    void addOrders(OrdersDTO dto);
-
     List<OrdersDTO> getAllOrders();
+
 }

@@ -43,9 +43,5 @@ class ItemRepoTest {
         itemRepo.save(item);
     }
 
-    @Test
-    public void editItemQty() {
-      itemRepo.editItemQty(10, "I001");
-    }
 
 }

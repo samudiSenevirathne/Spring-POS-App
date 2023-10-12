@@ -1,7 +1,5 @@
 package lk.ijse.spring.dto;
 
-
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -18,4 +16,5 @@ public class OrdersDTO {
     private String oid;
     private LocalDate date;
     private String cusID;
+    private List<OrderDetailsDTO> orderDetails;
 }

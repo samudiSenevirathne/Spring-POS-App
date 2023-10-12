@@ -17,4 +17,5 @@ public class OrderDetailsDTO {
     private String itemCode;
     private int qty;
     private BigDecimal unitPrice;
+
 }

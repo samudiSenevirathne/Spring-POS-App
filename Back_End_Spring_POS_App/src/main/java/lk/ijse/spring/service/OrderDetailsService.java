@@ -1,9 +1,9 @@
 package lk.ijse.spring.service;
 
-import lk.ijse.spring.dto.OrderDetailsDTO;
+import lk.ijse.spring.dto.OrdersDTO;
 
 public interface OrderDetailsService {
 
-    void addOrderDetails(OrderDetailsDTO dto);
+    void purchaseOrder(OrdersDTO dto);
 
 }

@@ -358,7 +358,8 @@
 
     // let tempTotal =0;
     let itemArray=[];//
-    let orderDetailArray=[];  //
+    // let orderDetailArray=[];  //
+    let orderDetails=[];
 
     $('#btnAddToTable').click(function () {
         let condition=0;
@@ -381,7 +382,8 @@
                  let item_total = item_Qty*parseInt($("#txtItemPrice").val());
                  $("#orderTable").children().eq(i).children(":eq(3)").text(item_Qty + "");
                  $("#orderTable").children().eq(i).children(":eq(4)").text(item_total + "");
-                 for (od of orderDetailArray) {
+                  // for (od of orderDetailArray) {
+                      for (od of orderDetails) {
                      if (od.itemCode_ === $("#txtItemCode").val()) {
                          let od_val_num = parseInt(od.value_);
                          od_val_num += parseInt($("#txtQty").val());
@@ -410,7 +412,8 @@
                     <td>${$("#txtItemPrice").val() * $("#txtQty").val()}</td>
                     </tr>`;
          $('#orderTable').append(row);
-         orderDetailArray.push({
+         // orderDetailArray.push({
+         orderDetails.push({
              o_id: $("#txtOrderID").val(),
              itemCode_: $("#txtItemCode").val(),
              value_: $("#txtQty").val(),
@@ -434,7 +437,18 @@
 
     function setDates() {
         let date = new Date().toJSON().split("T")[0];
-        $("#txtDate").val(date);
+         $("#txtDate").val(date);
+    }
+
+    let formattedDate = "";
+
+    function changeDateType() {
+        let dateString = $("#txtDate").val();
+        let date = new Date(dateString);
+        let year = date.getFullYear();
+        let month = (date.getMonth() + 1).toString().padStart(2, '0');
+        let day = date.getDate().toString().padStart(2, '0');
+        formattedDate = `${year}-${month}-${day}`;
     }
 
 
@@ -461,23 +475,17 @@
     }
 
     $('#btnSubmitOrder').click(function () {
-
+        changeDateType();
         let oid=$("#txtOrderID").val();
-        let date= $("#txtDate").val();
         let cusId= $("#orderCustomerID").val();
-        // ordersAll={
-        //     "oid":oid,
-        //     "date":date,
-        //     "cusId":cusId,
-        //     "orderDetailArray":orderDetailArray,
-        //     "itemArray":itemArray
-        // }
-        ordersAll= {
-                "oid":oid,
-                "date":date,
-                "cusId":cusId,
+        ordersAll={
+            "oid":oid,
+            "date":formattedDate,
+            "cusId":cusId,
+            "orderDetails":orderDetails,
+            // "orderDetailArray":orderDetailArray,
+            // "itemArray":itemArray
         }
-
         $.ajax({
             url:"http://localhost:8080/Back_End_Spring_POS_App_war/PurchaseOrder",
             method: "post",
@@ -485,8 +493,7 @@
             //     Auth:"user=samuDi,pass=samu@123"
             // },
             contentType:"application/json",
-            data:JSON.stringify(ordersAll,orderDetailArray,itemArray),
-            // data:JSON.stringify(ordersAll),
+            data:JSON.stringify(ordersAll),
             success: function (resp) {
                 alert(resp.message);
                 setOrderID();

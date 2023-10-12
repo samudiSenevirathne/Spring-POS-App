@@ -16,6 +16,5 @@ public interface ItemService {
 
     void updateItem(ItemDTO dto);
 
-    void editItemQty(int qtyOnHand ,String code);
 
 }

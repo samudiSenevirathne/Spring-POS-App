@@ -30,4 +30,11 @@ public class OrderDetails {
     @ManyToOne
     @JoinColumn(name = "itemCode",referencedColumnName = "code",insertable = false,updatable = false)
     private Item items;
+
+    public OrderDetails(String oid, String itemCode, int qty, BigDecimal unitPrice) {
+        this.oid = oid;
+        this.itemCode = itemCode;
+        this.qty = qty;
+        this.unitPrice = unitPrice;
+    }
 }

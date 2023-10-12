@@ -1,9 +1,6 @@
 package lk.ijse.spring.controller;
 
-import lk.ijse.spring.dto.ItemDTO;
-import lk.ijse.spring.dto.OrderDetailsDTO;
 import lk.ijse.spring.dto.OrdersDTO;
-import lk.ijse.spring.service.ItemService;
 import lk.ijse.spring.service.OrderDetailsService;
 import lk.ijse.spring.service.OrdersService;
 import lk.ijse.spring.util.ResponseUtil;
@@ -19,9 +16,6 @@ public class PurchaseOrderController {
     OrdersService ordersService;
 
     @Autowired
-    ItemService  itemService;
-
-    @Autowired
     OrderDetailsService orderDetailsService;
 
 
@@ -31,13 +25,9 @@ public class PurchaseOrderController {
     }
 
     @PostMapping
-    public ResponseUtil purchaseOrder(@RequestBody OrdersDTO od, OrderDetailsDTO ods, ItemDTO i) {
-        ordersService.addOrders(od);
-        orderDetailsService.addOrderDetails(ods);
-        itemService.editItemQty(i.getQtyOnHand(),i.getCode());
-        return new ResponseUtil("Ok", "Successfully Purchased",ods);
+    public ResponseUtil purchaseOrder(@RequestBody OrdersDTO od) {
+        orderDetailsService.purchaseOrder(od);
+        return new ResponseUtil("Ok", "Successfully Purchased",od);
     }
-
-
 
 }
